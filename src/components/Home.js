@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 export default function Home() {
     const navigate=useNavigate();
   const [countryName, setCountryName] = useState(null);
+  const [found,setFound]=useState(true)
 
   const handleOnChange = (e) => {
     if (e.key === "Enter") handleSearch();
@@ -14,16 +15,17 @@ export default function Home() {
   const handleSearch = async() => {
     try{
         let {data}=await getCountryDetails(countryName);
+        setFound(true);
         navigate(`/details/${countryName}`,{state:{data}});
-        console.log(data);
-    }catch(err){
+      }catch(err){
+        setFound(false);
         console.log(err);
     }
   };
   return (
     <Paper
       variant="outlined"
-      sx={{ margin: "auto", marginTop: "2%", width: "80%", height: "50vh" }}
+      sx={{textAlign:'center', margin: "auto", marginTop: "2%", width: "80%", height: "30vh" }}
     >
       <Typography variant="h4" color="primary">
         COUNTRY DATA
@@ -50,6 +52,7 @@ export default function Home() {
           Search
         </Button>
       </Stack>
+      {!found && <h2 style={{color:'red'}}>Country Not Found</h2>}
     </Paper>
   );
 }

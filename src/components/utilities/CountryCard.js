@@ -28,7 +28,7 @@ export default function CountryCard({
   };
   return (
     <Grid item lg={3}>
-      <Card sx={{ maxWidth: 345, minHeight: 300 }} elevation={3}>
+      <Card sx={{ minWidth: 300, minHeight: 300 }} elevation={3}>
         <CardActionArea>
           <CardMedia component="img" height="140" image={flag} alt={name} />
           <CardContent>
