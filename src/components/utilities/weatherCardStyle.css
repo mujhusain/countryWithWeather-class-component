@@ -1,0 +1,46 @@
+
+#card {
+  overflow: hidden;
+  padding: 25px;
+  min-height: 300px;
+  margin: 10px;
+  border-radius: 5px;
+  position: relative;
+}
+#card .details {
+  position: absolute;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#card .details .right {
+  text-align: right;
+}
+#card .details #summary {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+#card .details .temp {
+  font-size: 50px;
+  line-height: 60px;
+}
+#card .details .temp span {
+  font-size: 31px;
+  font-weight: bold;
+  line-height: 30px;
+  vertical-align: top;
+  margin-left: 2px;
+}
+.weather {
+  background-color: #dae3fd;
+}
+
+.weatherimg {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
