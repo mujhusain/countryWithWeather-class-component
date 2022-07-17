@@ -37,7 +37,7 @@ export default function Home() {
         spacing={2}
       >
         <TextField
-          type="string"
+          type='text'
           id="outlined-basic"
           onChange={handleOnChange}
           label="Enter Country Name"
