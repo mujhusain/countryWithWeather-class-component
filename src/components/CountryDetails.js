@@ -2,48 +2,53 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import CountryCard from "./utilities/CountryCard";
 import{Link} from'react-router-dom';
+import WithRouting from './WithRouting'
 
-export default function CountryDetails() {
-  const location = useLocation();
-  const [data, setData] = useState(null);
-  
+// Hoc-, withRouter
+import React, { Component } from 'react'
 
-  useEffect(() => {
-    setData(location?.state.data)
-    console.log(data);
-  }, [data]);
-
-  return (
+class CountryDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state={data:null}
+  }
+  componentDidMount(){
+    this.setState({data:this.props.location?.state.data});
+  }
+  render() {
+    return (
       <Box sx={{ width: "90%", margin: "auto" }}>
-        <Link to='/'>
+      <Link to='/'>
 
-        <Paper variant="outlined" sx={{height: "50px", margin: "auto"}} >
-            <Typography variant='h4' align='center' color='primary' gutterBottom>Country Details</Typography>
-        </Paper>
-        </Link>
-        <Grid
-          container
-          justifyContent="space-evenly"
-          alignItems="stretch"
-          wrap="wrap"
-          spacing={2}
-        >
-          {data?.map((item, index) => {
-            return (
-              <CountryCard
-                name={item.name.common}
-                capital={item.capital[0]}
-                poplation={item.population}
-                latlong={item.latlng[0] + ", " + item.latlng[0]}
-                flag={item.flags.svg}
-              />
-            );
-          })}
-        </Grid>
-      </Box>
-  );
+      <Paper variant="outlined" sx={{height: "50px", margin: "auto"}} >
+          <Typography variant='h4' align='center' color='primary' gutterBottom>Country Details</Typography>
+      </Paper>
+      </Link>
+      <Grid
+        container
+        justifyContent="space-evenly"
+        alignItems="stretch"
+        wrap="wrap"
+        spacing={2}
+      >
+        {this.state.data?.map((item, index) => {
+          return (
+            <CountryCard
+            key={index}
+              name={item.name.common}
+              capital={item.capital[0]}
+              poplation={item.population}
+              latlong={item.latlng[0] + ", " + item.latlng[0]}
+              flag={item.flags.svg}
+            />
+          );
+        })}
+      </Grid>
+    </Box>
+    )
+  }
 }
+
+export default WithRouting(CountryDetails);
